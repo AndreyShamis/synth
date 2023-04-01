@@ -92,9 +92,11 @@ AudioMixer4              SecMixer1;         //xy=590,351
 AudioMixer4              ThirdMixer1;         //xy=794,913
 AudioAmplifier           amp1; //xy=954,913
 AudioSynthWaveformSine   LFO_Filter;          //xy=976,1030
-AudioFilterStateVariable filter1;        //xy=1132,922
-AudioMixer4              mixer4;         //xy=1345,929
+AudioFilterStateVariable filter1;        //xy=1144,934
+AudioMixer4              LastMixer;         //xy=1345,929
+AudioOutputUSB           usbOut;           //xy=1498,871
 AudioOutputI2S           i2s1;           //xy=1503,930
+AudioAnalyzePrint        print1;         //xy=1503,1025
 AudioConnection          patchCord1(wavetable57, 0, mixer15, 0);
 AudioConnection          patchCord2(wavetable58, 0, mixer15, 1);
 AudioConnection          patchCord3(wavetable59, 0, mixer15, 2);
@@ -182,10 +184,13 @@ AudioConnection          patchCord84(SecMixer1, 0, ThirdMixer1, 0);
 AudioConnection          patchCord85(ThirdMixer1, amp1);
 AudioConnection          patchCord86(amp1, 0, filter1, 0);
 AudioConnection          patchCord87(LFO_Filter, 0, filter1, 1);
-AudioConnection          patchCord88(filter1, 0, mixer4, 0);
-AudioConnection          patchCord89(filter1, 1, mixer4, 1);
-AudioConnection          patchCord90(filter1, 2, mixer4, 2);
-AudioConnection          patchCord91(mixer4, 0, i2s1, 0);
-AudioConnection          patchCord92(mixer4, 0, i2s1, 1);
-AudioControlSGTL5000     sgtl5000_1;     //xy=1657,943
+AudioConnection          patchCord88(filter1, 0, LastMixer, 0);
+AudioConnection          patchCord89(filter1, 1, LastMixer, 1);
+AudioConnection          patchCord90(filter1, 2, LastMixer, 2);
+AudioConnection          patchCord91(LastMixer, 0, i2s1, 0);
+AudioConnection          patchCord92(LastMixer, 0, i2s1, 1);
+AudioConnection          patchCord93(LastMixer, print1);
+AudioConnection          patchCord94(LastMixer, 0, usbOut, 0);
+AudioConnection          patchCord95(LastMixer, 0, usbOut, 1);
+AudioControlSGTL5000     sgtl5000_1;     //xy=1504,1091
 // GUItool: end automatically generated code
